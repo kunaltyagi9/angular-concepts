@@ -1,0 +1,15 @@
+1 - Install Angular material
+
+npm install --save @angular/cdk @angular/material
+in style.scss file (global)
+@import '@angular material/prebuilt-themes/deeppurple-amber.css';
+
+
+2 - download file in excel format
+
+npm install file-saver --save
+npm install xlsx --save
+
+
+3 - Date is not working
+click on the version of typescript and change it to workspace
