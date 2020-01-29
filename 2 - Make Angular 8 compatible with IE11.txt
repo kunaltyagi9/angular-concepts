@@ -1,0 +1,68 @@
+---- angular.json
+
+{
+  "projects": {
+    "my-app": {
+      "architect": {
+        "build": {
+          "configurations": {
+            "es5" : {
+              "tsConfig": "tsconfig.app.es5.json"
+            }
+          }
+        },
+        "serve": {
+          "configurations": {
+            "es5": {
+              "browserTarget": "my-app:build:es5"
+	     }
+           }
+        }
+      }
+    }
+  }
+}
+
+
+---- Create tsconfig.app.es5.json alongside angular.json
+
+{
+    "extends": "./tsconfig.app.json",
+    "compilerOptions": {
+        "target": "es5"
+    }
+}
+
+
+
+----Update browserslist to enable IE 11 support
+
+not IE 9-10 # For IE 9-11 support, remove 'not'.
+IE 11
+
+
+---- package.json
+
+"scripts": {
+  "build": "ng build",
+  "buildES5": "ng build --configuration=es5",
+  "start": "ng serve",
+  "startES5": "ng serve --configuration=es5",
+}
+
+
+---- build and start
+
+npm run build
+
+npm run buildES5
+
+npm run start
+
+npm run startES5
+
+
+
+
+reference
+https://stackoverflow.com/questions/56563742/how-do-i-make-angular-8-compatible-with-ie11
