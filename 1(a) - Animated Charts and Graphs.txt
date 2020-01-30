@@ -1,0 +1,168 @@
+npm install ng2-charts
+npm install --save chart.js
+npm install chartist
+
+
+
+
+
+
+
+---- module.ts
+
+
+import { ChartsModule } from 'ng2-charts';
+
+
+@NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ChartsModule
+  ],
+  providers: [],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
+
+
+
+
+
+component.ts
+
+import * as Chartist from 'chartist';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+import { MultiDataSet } from 'ng2-charts';
+import { ChartType } from 'chart.js';
+import { SingleDataSet, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } from 'ng2-charts';
+
+
+export class AppComponent {
+  barChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  barChartLabels: Label[] = ['Food', 'Entertainment', 'Travelling', 'Renty', 'Medical', 'Others'];
+  barChartType: ChartType = 'bar';
+  barChartLegend = true;
+  barChartPlugins = [];
+
+  barChartData: ChartDataSets[] = [
+    { data: [3000, 2000, 5000, 8000, 2000, 1500], label: 'Monthly Expense' }
+  ];
+  ///////////////////////////////////////////////////
+
+
+  public pieChartOptions: ChartOptions = {
+    responsive: true,
+  };
+  public pieChartLabels: Label[] = [['Jwellery'], ['Property'], 'Shares', 'Deposits'];
+  public pieChartData: SingleDataSet = [15, 90, 7, 10];
+  public pieChartType: ChartType = 'pie';
+  public pieChartLegend = true;
+  public pieChartPlugins = [];
+
+
+  //   ////////////////////////////////////////////////////////////////
+
+  doughnutChartLabels: Label[] = ['Income', 'Expense', 'Transfer'];
+  doughnutChartData: MultiDataSet = [
+    [55000, 15000, 3000]
+  ];
+  doughnutChartType: ChartType = 'doughnut';
+  /////////////////////////////////////////////////
+
+  lineChartData: ChartDataSets[] = [
+    { data: [85, 72, 78, 75, 77, 75], label: 'Share prices' },
+  ];
+
+  lineChartLabels: Label[] = ['January', 'February', 'March', 'April', 'May', 'June'];
+
+  lineChartOptions = {
+    responsive: true,
+  };
+
+  lineChartColors: Color[] = [
+    {
+      borderColor: 'black',
+      backgroundColor: 'rgba(255,255,0,0.28)',
+    },
+  ];
+
+  lineChartLegend = true;
+  lineChartPlugins = [];
+  lineChartType = 'line';
+
+
+
+}
+
+
+
+
+
+----component.html
+
+
+
+
+<div class="row">
+  <div class="col-md-4">
+    <div class="chart-wrapper">
+        <canvas baseChart 
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [plugins]="barChartPlugins"
+        [legend]="barChartLegend"
+        [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="chart-wrapper">
+        <canvas baseChart 
+        [data]="doughnutChartData"
+        [labels]="doughnutChartLabels"
+        [chartType]="doughnutChartType">
+      </canvas>
+    </div>
+  </div>
+
+  <div class="col-md-4">
+    <div class="chart-wrapper">
+        <canvas baseChart 
+        [data]="pieChartData" 
+        [labels]="pieChartLabels" 
+        [chartType]="pieChartType"
+        [options]="pieChartOptions"
+        [plugins]="pieChartPlugins"
+        [legend]="pieChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+Errors---
+
+
+ERROR in ./node_modules/ng2-charts/fesm2015/ng2-charts.js
+
+Module not found: Error: Can't resolve 'chart.js' in 'C:\Users\Desktop\app-display\node_modules\ng2-charts\fesm2015'
+
+
+ng2-charts is just an angular wrapper for Chart.js library. 
+Hence the latter also needs to be installed separately.
+
+npm install --save ng2-charts
+npm install --save chart.js
