@@ -13,3 +13,13 @@ npm install xlsx --save
 
 3 - Date is not working
 click on the version of typescript and change it to workspace
+
+
+4 - NullInjectorError: StaticInjectorError(AppModule)[HttpClient]:
+
+
+Add Module HttpClientModule in module.ts
+
+import { HttpClientModule } from '@angular/common/http';
+imports: [
+   HttpClientModule	]

@@ -1,0 +1,16 @@
+---component.html
+
+
+<select class="browser-default custom-select" [(ngModel)]="selectYear">
+
+        <option selected disabled value = "">Select Year</option>
+
+        <option *ngFor = "let year of years" value="{{year}}">{{year}}</option>
+
+</select>
+
+
+
+----component.ts
+
+selectYear ='';
