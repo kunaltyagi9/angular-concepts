@@ -1,0 +1,61 @@
+npm install -g @ng-bootstrap/ng-bootstrap
+
+
+---- module.ts
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+imports: [
+    NgbModule
+]
+
+
+
+---- component.html
+
+
+<ng-template #content let-modal>
+      <div class="col-lg--12 col-sm-12 mt-3">
+
+      		<h4 class="">{{selectedRadio}} Data : {{selectedComponent}}</h4>
+
+      		<div class="row mt-1 mb-4 ml-3">
+               		<button type="submit" class="btn btn-primary" (click)="downloadData()">Download</button>
+            
+      		</div>
+       </div>
+</ng-template>
+
+
+
+---- component.ts
+
+
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+
+constructor(private modalService: NgbModal) { }
+
+
+open(content, component) {
+
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
+}
+
+
+private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
+}
+
+
+
+
